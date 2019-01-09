@@ -1,7 +1,6 @@
 # FasterDeploy
 
-![LICENSE]
-> 一键部署Mysql、FasterRunner、FasterWeb
+> 快速部署Mysql、FasterRunner、FasterWeb
 
 ## 集群部署服务
 1、创建本地数据目录 
