@@ -24,6 +24,12 @@ docker node ls
 ```
 docker swarm leave 
 ```
+5、构建Docker镜像
+```
+$docker build -t fasterrunner:latest .
+$docker build -t fasterweb:latest .
+参数修改请参考原文档
+```
 ## 部署基础服务
 
 1、启动portainer、mysql
