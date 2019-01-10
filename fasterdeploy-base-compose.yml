@@ -1,0 +1,54 @@
+version: '3.2'
+services:
+  portainer:
+    image: portainer/portainer
+    container_name: portainer
+    ports:
+    - 9000:9000
+    environment:
+    - constraint:node.role == manager
+    networks:
+    - swarm_net
+    command: -H unix:///var/run/docker.sock
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /data/poratiner:/data
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+        max_attempts: 1
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+  mysql:
+    image: hub.c.163.com/library/mysql:5.7
+    container_name: mysql
+    ports:
+    - 3306:3306
+    environment:
+    - MYSQL_ROOT_PASSWORD=123456
+    networks:
+    - swarm_net
+    volumes:
+    - /data/var/lib/mysql:/var/lib/mysql
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 256M
+
+networks:
+  swarm_net:
+    external: true
