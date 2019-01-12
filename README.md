@@ -8,8 +8,8 @@
 $ sudo mkdir -p /data/poratiner /data/var/lib/mysql
 ```
 2、创建集群主节点
-Windows系统主机IP为虚拟机IP，linux、Mac系统主机IP为本机IP
 ```
+注：Windows系统主机IP为虚拟机IP，linux、Mac系统主机IP为本机IP
 $ sudo docker swarm init --advertise-addr <主机IP> 
 ```
 3、创建集群网络
@@ -29,15 +29,17 @@ $ sudo docker node ls
 $ sudo docker swarm leave 
 ```
 5、构建fasterrunner的Docker镜像
-修改settings.py DATABASES 字典相关配置
 ```
+注：修改settings.py DATABASES 字典相关配置
 $ sudo docker build -t fasterrunner:latest .
 ```
 6、构建fasterweb的Docker镜像
+```
+注：
 修改default.conf配置文件 server_name的ip, 注意为当前docker服务宿主机的ip地址
 修改/src/restful/api.js baseUrl地址, 即为fastrunner容器运行的宿主机地址
 执行npm install, npm run build # 生成生产环境包
-```
+
 $ sudo docker build -t fasterweb:latest .
 ```
 ## 部署基础服务
