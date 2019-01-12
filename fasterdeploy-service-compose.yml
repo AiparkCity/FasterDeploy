@@ -1,7 +1,7 @@
 version: '3.2'
 services:
   fasterrunner-service:
-    image: hub.c.163.com/wydydq/fasterrunner:latest
+    image: fasterrunner:latest
     container_name: fasterrunner
     ports:
     - 8000:8000
@@ -21,7 +21,7 @@ services:
           cpus: '1.0'
           memory: 256M
   fasterweb-service:
-    image: hub.c.163.com/wydydq/fasterweb:latest
+    image: fasterweb:latest
     container_name: fasterweb
     ports:
     - 8082:8082
