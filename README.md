@@ -1,6 +1,6 @@
 # FasterDeploy
 
-> 快速部署Mysql、FasterRunner、FasterWeb
+> Docker部署Mysql、FasterRunner、FasterWeb；
 
 ## 部署前准备
 1、创建本地数据目录 
@@ -56,6 +56,7 @@ $ sudo docker build -t fasterweb:latest .
 ## 部署基础服务
 1、启动portainer、mysql
 ```
+注：portainer为Docker图形化管理工具，可以选择安装
 $ cd FasterDeploy
 $ sudo docker stack deploy --compose-file fasterdeploy-base-compose.yml base 
 ```
@@ -84,7 +85,7 @@ $ sudo docker exec -it b3d0ef2ac77b /bin/sh
 ```
 
 ## 访问应用
-1、访问集群管理工具
+1、访问Docker图形化管理工具portainer
 ```
 http://localhost:9000
 ```
