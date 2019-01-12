@@ -1,6 +1,6 @@
 # FasterDeploy
 
-> Docker部署Mysql、FasterRunner、FasterWeb；
+Docker部署Mysql、FasterRunner、FasterWeb；
 
 ## 部署前准备
 1、创建本地数据目录 
@@ -49,7 +49,7 @@ $ cd FasterWeb
 修改配置：
 第一步：修改default.conf配置文件 server_name的ip, 注意为当前docker服务宿主机的ip地址
 第二步：修改/src/restful/api.js baseUrl地址, 即为fastrunner容器运行的宿主机地址
-第三步：执行npm install, npm run build # 生成生产环境包
+第三步：执行npm install, npm run build # 生成生产环境包，npm是nodejs命令，没有的自行安装
 构建镜像：
 $ sudo docker build -t fasterweb:latest .
 ```
