@@ -5,7 +5,7 @@
 ## 部署前准备
 1、创建本地数据目录 
 ```
-$ sudo mkdir -p /data/poratiner /data/var/lib/mysql
+$ sudo mkdir -p /data/poratiner /data/var/lib/mysql /opt/autotest
 ```
 2、创建集群主节点
 ```
@@ -28,24 +28,35 @@ $ sudo docker node ls
 ```
 $ sudo docker swarm leave 
 ```
-5、构建fasterrunner的Docker镜像
+5、拉取代码
 ```
-注：修改settings.py DATABASES 字典相关配置
+$ cd /opt/autotest
+$ git clone https://github.com/yinquanwang/FasterRunner.git
+$ git clone https://github.com/yinquanwang/FasterWeb.git
+$ git clone https://github.com/AiparkCity/FasterDeploy.git
+```
+6、构建fasterrunner的Docker镜像
+```
+$ cd FasterRunner
+修改数据库配置:
+$ vim FasterRunner/settings.py
+构建镜像：
 $ sudo docker build -t fasterrunner:latest .
 ```
 6、构建fasterweb的Docker镜像
 ```
-注：
-修改default.conf配置文件 server_name的ip, 注意为当前docker服务宿主机的ip地址
-修改/src/restful/api.js baseUrl地址, 即为fastrunner容器运行的宿主机地址
-执行npm install, npm run build # 生成生产环境包
-
+$ cd FasterWeb
+修改配置：
+第一步：修改default.conf配置文件 server_name的ip, 注意为当前docker服务宿主机的ip地址
+第二步：修改/src/restful/api.js baseUrl地址, 即为fastrunner容器运行的宿主机地址
+第三步：执行npm install, npm run build # 生成生产环境包
+构建镜像：
 $ sudo docker build -t fasterweb:latest .
 ```
 ## 部署基础服务
-
 1、启动portainer、mysql
 ```
+$ cd FasterDeploy
 $ sudo docker stack deploy --compose-file fasterdeploy-base-compose.yml base 
 ```
 2、连接数据库，创建FasterRunner库，编码选择utf8
