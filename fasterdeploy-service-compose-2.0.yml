@@ -4,7 +4,7 @@ services:
     image: fasterrunner:2.0
     container_name: fasterrunner
     ports:
-    - 8000:8000
+    - 5000:5000
     networks:
     - swarm_net
     depends_on:
@@ -19,7 +19,7 @@ services:
       resources:
         limits:
           cpus: '1.0'
-          memory: 256M
+          memory: 512M
   fasterweb-service:
     image: fasterweb:2.0
     container_name: fasterweb
