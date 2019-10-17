@@ -1,0 +1,23 @@
+version: '3.2'
+services:
+  fasterweb2:
+    image: fasterweb:2.0
+    container_name: fasterweb2
+    ports:
+    - 8083:8083
+    networks:
+    - swarm_net
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 256M
+networks:
+  swarm_net:
+    external: true
