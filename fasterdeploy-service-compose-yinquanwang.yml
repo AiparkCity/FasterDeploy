@@ -3,7 +3,7 @@ services:
   # 容器名
   fasterunner:
     build: /opt/autotest/FasterRunner
-    image: fasterunner:2.0
+    image: fasterrunner:2.0
     # 依赖
     depends_on:
       - mysql
