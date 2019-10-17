@@ -13,6 +13,8 @@ services:
       - /opt/autotest/FasterRunner:/share/fasterunner
     ports:
       - 8000:8000
+    networks:
+      - swarm_net
     command: /bin/sh -c '\cp -rf /share/fasterunner/* /usr/src/app/ && python manage.py runserver 0.0.0.0:8000'
 
   fasterweb:
@@ -25,4 +27,9 @@ services:
       - /opt/autotest/FasterWeb:/share/fasterweb
     ports:
       - 8082:8082
+    networks:
+      - swarm_net
     command: /bin/sh -c '\cp -rf /share/fasterweb/default.conf /etc/nginx/conf.d/ && \cp -rf /share/fasterweb/dist/  /usr/share/nginx/html/ && nginx -g "daemon off;"'
+networks:
+  swarm_net:
+    external: true
