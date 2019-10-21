@@ -1,0 +1,32 @@
+version: "3.3"
+services:
+  rabbit1:
+    image: rabbitmq:3-management
+    hostname: rabbit1
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "secret string"
+      RABBITMQ_NODENAME: rabbit1
+    ports:
+      - "4369:4369"
+      - "5671:5671"
+      - "5672:5672"
+      - "15671:15671"
+      - "15672:15672"
+      - "25672:25672"
+    configs:
+      - source: rabbitmq_config
+        target: /etc/rabbitmq/rabbitmq.config
+      - source: definitons_json
+        target: /etc/rabbitmq/definitions.json
+    networks:
+      - swarm_net
+
+configs:
+  rabbitmq_config:
+    file: ./rabbitmq.config
+  definitons_json:
+    file: ./definitions.json
+
+networks:
+  swarm_net:
+    external: true
