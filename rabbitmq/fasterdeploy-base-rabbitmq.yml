@@ -20,6 +20,18 @@ services:
         target: /etc/rabbitmq/definitions.json
     networks:
       - swarm_net
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 256M
 
 configs:
   rabbitmq_config:
