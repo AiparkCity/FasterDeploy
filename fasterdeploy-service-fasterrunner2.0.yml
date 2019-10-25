@@ -4,11 +4,11 @@ services:
     image: fasterrunner:2.0
     container_name: fasterrunner2
     ports:
-    - 5000:5000
+      - 5000:5000
     networks:
-    - swarm_net
-    depends_on:
-    - mysql
+      - swarm_net
+    environment:
+      - TZ=Asia/Shanghai
     deploy:
       replicas: 1
       update_config:
